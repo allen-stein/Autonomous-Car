@@ -1,86 +1,24 @@
-Sure, here's a README file for your GitHub repository:
 
-```markdown
 # Autonomous Vehicle Steering Prediction
 
-This repository contains code for predicting steering angles in autonomous vehicle scenarios. The code is written in Python and uses Keras with TensorFlow backend for building and training the neural network model.
+This repository contains code for training a neural network model to predict steering angles for autonomous vehicles. The model is trained using the NVIDIA End-to-End Self-Driving Car architecture on a dataset obtained from a simulated environment.
 
-## Overview
+The code is written in Python and utilizes the Keras library for building and training the neural network. The training data includes images captured from the vehicle's cameras and corresponding steering angles.
 
-The main file `final_code.ipynb` is a Jupyter Notebook generated in Google Colaboratory. It includes the code for loading and preprocessing data, building a convolutional neural network (CNN) model, and training the model for predicting steering angles.
+## Code Overview
 
-## Getting Started
+The main code is provided in the Jupyter Notebook file `final_code.ipynb`. The notebook is structured as follows:
 
-### Prerequisites
+1. **Data Preparation**: Loading and preprocessing the training data, including balancing the dataset for steering angles.
+2. **Data Augmentation**: Implementing image augmentation techniques such as zooming, panning, brightness alteration, and flipping to enhance the dataset.
+3. **Image Preprocessing**: Defining a function for image preprocessing, including cropping, color space conversion, Gaussian blurring, resizing, and normalization.
+4. **Model Architecture**: Implementing the NVIDIA End-to-End Self-Driving Car architecture for steering angle prediction.
+5. **Training**: Training the model using a batch generator to handle augmented data on-the-fly.
+6. **Evaluation**: Visualizing and analyzing the training and validation loss over epochs.
+7. **Saving the Model**: Saving the trained model as `model.h5`.
 
-- Python 3
-- Jupyter Notebook
-- TensorFlow
-- Keras
-- imgaug
-- OpenCV
-- Matplotlib
-- NumPy
-- Pandas
+## Dependencies
 
-Install the required libraries using the following command:
+Ensure you have the required dependencies installed before running the code:
 
-```bash
-pip install imgaug opencv-python matplotlib numpy pandas
-```
 
-### Clone the Repository
-
-```bash
-git clone https://github.com/rslim087a/track
-cd track
-```
-
-### Dataset
-
-The dataset consists of images and corresponding steering angles. The `driving_log.csv` file contains information about the paths to the center, left, and right camera images along with steering angles, throttle, reverse, and speed.
-
-## Code Structure
-
-- `load_img_steering`: Function to load image paths and steering angles.
-- Data preprocessing, including balancing the dataset by removing samples with steering angles overrepresented.
-- Data augmentation functions: `zoom`, `pan`, `img_random_brightness`, `img_random_flip`.
-- Visualization of augmented images.
-- Image preprocessing using `img_preprocess`.
-- Data generator `batch_generator` for on-the-fly data augmentation during training.
-- NVIDIA model architecture in `nvidia_model`.
-- Model training and evaluation.
-- Save the trained model to a file (`model.h5`).
-
-## Model Summary
-
-The NVIDIA model used for this project is summarized below:
-
-```plaintext
-Model: "sequential"
-_________________________________________________________________
-Layer (type)                 Output Shape              Param #
-=================================================================
-conv2d (Conv2D)              (None, 31, 98, 24)        1824
-...
-dense_3 (Dense)              (None, 1)                 11
-=================================================================
-Total params: 1,674,227
-Trainable params: 1,674,227
-Non-trainable params: 0
-```
-
-## Training
-
-The model is trained using a data generator to efficiently handle a large dataset. Training parameters such as batch size, steps per epoch, and epochs can be adjusted according to your needs.
-
-```bash
-python final_code.ipynb
-```
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
-
-Make sure to replace the placeholders with specific information if needed. Also, note that the model training command (`python final_code.ipynb`) assumes running the Jupyter Notebook from the command line. Adjust it accordingly if running in a different environment.
